@@ -64,7 +64,7 @@ export default function AdminAlarmPage() {
                   </div>
                   <div className="h-[40px] relative shrink-0 w-full">
                     <p className="absolute font-bold leading-[1.5] left-0 text-[13px] text-[#85817e] top-0 tracking-[-0.26px] w-full whitespace-pre-wrap">
-                      손염소 님의 "다음 GCS Week 현장견학 장소 추천 받습니다"  게시물에 댓글이 달렸습니다.
+                      손염소 님의 &quot;다음 GCS Week 현장견학 장소 추천 받습니다&quot;  게시물에 댓글이 달렸습니다.
                     </p>
                   </div>
                 </div>
@@ -91,7 +91,7 @@ export default function AdminAlarmPage() {
                   </div>
                   <div className="flex items-start relative shrink-0 w-full">
                     <p className="font-bold h-[20px] leading-[1.5] relative shrink-0 text-[13px] text-[#85817e] tracking-[-0.26px] w-full whitespace-pre-wrap">
-                      '김염소' 계정을 판매자로 등록하였습니다.
+                      &apos;김염소&apos; 계정을 판매자로 등록하였습니다.
                     </p>
                   </div>
                 </div>

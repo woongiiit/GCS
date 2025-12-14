@@ -1,7 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+
+export const dynamic = 'force-dynamic';
 
 // 배너 배경 이미지
 const imgBannerBg = "https://www.figma.com/api/mcp/asset/c7e00a88-9d5c-4514-abbf-7d5b69318d37";
@@ -14,7 +16,7 @@ const imgLine = "https://www.figma.com/api/mcp/asset/c0c8d771-a64a-4704-8d98-52d
 // Fund 더미 상품 이미지
 const imgFundProduct = "https://www.figma.com/api/mcp/asset/b877ee89-3a7c-4a41-a6ba-f1b61c34e16f";
 
-export default function ShopPage() {
+function ShopContent() {
   const searchParams = useSearchParams();
   const [selectedTab, setSelectedTab] = useState<'fund' | 'partner'>('fund');
   const [filterOpen, setFilterOpen] = useState(false);
@@ -309,6 +311,14 @@ export default function ShopPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function ShopPage() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+      <ShopContent />
+    </Suspense>
   );
 }
 

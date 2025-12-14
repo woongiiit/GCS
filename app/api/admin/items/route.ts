@@ -75,7 +75,19 @@ export async function GET(request: NextRequest) {
     const total = await prisma.product.count({ where });
 
     // 품목 형식으로 변환
-    const items = products.flatMap((product) => {
+    type ItemType = {
+      id: string;
+      productId: string;
+      productName: string;
+      type: string;
+      optionName: string | null;
+      optionValue: string | null;
+      price: number;
+      status: string;
+      teamName: string;
+    };
+
+    const items: ItemType[] = products.flatMap((product): ItemType[] => {
       if (product.options.length === 0) {
         // 옵션이 없는 경우
         return [
@@ -93,8 +105,8 @@ export async function GET(request: NextRequest) {
         ];
       } else {
         // 옵션이 있는 경우 각 옵션값별로 품목 생성
-        return product.options.flatMap((option) =>
-          option.values.map((value) => ({
+        return product.options.flatMap((option): ItemType[] =>
+          option.values.map((value): ItemType => ({
             id: `${product.id}-${option.id}-${value.id}`,
             productId: product.id,
             productName: product.name,

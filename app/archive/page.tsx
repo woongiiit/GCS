@@ -1,14 +1,16 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
+
+export const dynamic = 'force-dynamic';
 
 // 배너 배경 이미지
 const imgBannerBg = "https://www.figma.com/api/mcp/asset/00353ccf-f556-4931-bb5d-33e0ac26a1fd";
 // News 탭용 아이콘
 const imgArrowUpRight = "https://www.figma.com/api/mcp/asset/9b54eb61-c96d-43a8-8327-1679d4f11d8c";
 
-export default function ArchivePage() {
+function ArchiveContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [selectedTab, setSelectedTab] = useState<'project' | 'news'>('project');
@@ -215,6 +217,14 @@ export default function ArchivePage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function ArchivePage() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+      <ArchiveContent />
+    </Suspense>
   );
 }
 

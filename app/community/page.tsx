@@ -1,14 +1,16 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+
+export const dynamic = 'force-dynamic';
 
 // 배너 배경 이미지
 const imgBannerBg = "https://www.figma.com/api/mcp/asset/49df0f29-2ee7-48c8-b9fb-d7f35795ee4d";
 // 사용자 프로필 아이콘
 const imgUserProfile = "https://www.figma.com/api/mcp/asset/c6b8ae19-99ad-46ea-9cb6-c77ae9e91a8a";
 
-export default function CommunityPage() {
+function CommunityContent() {
   const searchParams = useSearchParams();
   const [selectedTab, setSelectedTab] = useState<'board' | 'lounge'>('board');
 
@@ -190,6 +192,14 @@ export default function CommunityPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function CommunityPage() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+      <CommunityContent />
+    </Suspense>
   );
 }
 

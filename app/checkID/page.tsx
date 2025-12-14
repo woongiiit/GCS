@@ -1,8 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+
+export const dynamic = 'force-dynamic';
 
 // 이미지 URL 상수들
 const imgVector827 = "https://www.figma.com/api/mcp/asset/bc8152b2-f82a-476a-8b4f-0fff6612541e";
@@ -18,7 +20,7 @@ const img4 = "https://www.figma.com/api/mcp/asset/2fb993b2-14b1-4da2-b892-d23ec0
 const img5 = "https://www.figma.com/api/mcp/asset/b55cf6e6-7889-4507-b58b-daa07e2fa120";
 const img6 = "https://www.figma.com/api/mcp/asset/29e606d0-1ead-404b-9c20-d4a28e8be041";
 
-export default function CheckIDPage() {
+function CheckIDContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [email, setEmail] = useState<string | null>(null);
@@ -219,5 +221,13 @@ export default function CheckIDPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function CheckIDPage() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+      <CheckIDContent />
+    </Suspense>
   );
 }

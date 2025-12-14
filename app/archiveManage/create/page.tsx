@@ -33,9 +33,17 @@ export default function CreateProjectPage() {
   const router = useRouter();
   const [title, setTitle] = useState('');
   const [teamName, setTeamName] = useState('');
-  const [selectedMembers, setSelectedMembers] = useState<Array<{id: string; name: string; nickname: string; displayName: string}>>([]);
+  type MemberType = {
+    id: string;
+    name: string;
+    nickname: string;
+    displayName: string;
+    email: string;
+  };
+  
+  const [selectedMembers, setSelectedMembers] = useState<Array<MemberType>>([]);
   const [memberSearchQuery, setMemberSearchQuery] = useState('');
-  const [memberSearchResults, setMemberSearchResults] = useState<Array<{id: string; name: string; nickname: string; displayName: string}>>([]);
+  const [memberSearchResults, setMemberSearchResults] = useState<Array<MemberType>>([]);
   const [showMemberDropdown, setShowMemberDropdown] = useState(false);
   const memberSearchRef = useRef<HTMLDivElement>(null);
   const memberInputRef = useRef<HTMLInputElement>(null);
@@ -115,7 +123,7 @@ export default function CreateProjectPage() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleMemberSelect = (user: {id: string; name: string; nickname: string; displayName: string}) => {
+  const handleMemberSelect = (user: MemberType) => {
     if (!selectedMembers.some((m) => m.id === user.id)) {
       setSelectedMembers([...selectedMembers, user]);
       setMemberSearchQuery('');
@@ -235,7 +243,7 @@ export default function CreateProjectPage() {
                       className="w-full text-left px-[12px] py-[8px] hover:bg-[#f8f6f4] text-[13px] text-[#1a1918] border-b border-[#eeebe6] last:border-b-0"
                     >
                       <div className="font-medium">{user.displayName}</div>
-                      <div className="text-[11px] text-[#85817e]">{user.email}</div>
+                      {user.email && <div className="text-[11px] text-[#85817e]">{user.email}</div>}
                     </button>
                   ))}
                 </div>
