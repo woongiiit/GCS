@@ -35,6 +35,7 @@ model User {
   notifications    Notification[]  @relation("Notifications")
   inquiries        Inquiry[]       @relation("Inquiries")
   adminLogs        AdminLog[]      @relation("AdminLogs")
+  projectMembers   ProjectMember[] @relation("ProjectMembers")
 }
 
 model EmailVerification {
@@ -309,7 +310,7 @@ model Post {
 // ============================================
 
 model Project {
-  id          String       @id @default(cuid())
+  id          String          @id @default(cuid())
   title       String
   description String?
   teamName    String?
@@ -317,12 +318,13 @@ model Project {
   category    String?
   thumbnail   String?
   content     String?
-  viewCount   Int          @default(0)
-  isPublic    Boolean      @default(true)
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  viewCount   Int             @default(0)
+  isPublic    Boolean         @default(true)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
   
   tags        ProjectTag[]
+  members     ProjectMember[]
   
   @@index([year])
   @@index([category])
@@ -366,6 +368,20 @@ model ProjectTag {
   @@unique([projectId, tagId])
   @@index([projectId])
   @@index([tagId])
+}
+
+model ProjectMember {
+  id        String   @id @default(cuid())
+  projectId String
+  userId    String
+  createdAt DateTime @default(now())
+  
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user      User     @relation("ProjectMembers", fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@unique([projectId, userId])
+  @@index([projectId])
+  @@index([userId])
 }
 
 // ============================================

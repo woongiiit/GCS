@@ -17,6 +17,18 @@ export async function GET(
             tag: true,
           },
         },
+        members: {
+          include: {
+            user: {
+              select: {
+                id: true,
+                name: true,
+                nickname: true,
+                profileImage: true,
+              },
+            },
+          },
+        },
       },
     });
 
@@ -42,6 +54,17 @@ export async function GET(
       data: { viewCount: { increment: 1 } },
     }).catch(err => console.error('조회수 증가 오류:', err));
 
+    // 디버깅: members 데이터 확인
+    console.log('프로젝트 멤버 데이터:', {
+      membersCount: project.members.length,
+      members: project.members.map((pm) => ({
+        projectMemberId: pm.id,
+        userId: pm.userId,
+        hasUser: !!pm.user,
+        userName: pm.user?.name,
+      })),
+    });
+
     return NextResponse.json(
       {
         project: {
@@ -57,6 +80,14 @@ export async function GET(
           tags: project.tags.map((pt) => pt.tag.name),
           createdAt: project.createdAt,
           updatedAt: project.updatedAt,
+          members: project.members
+            .filter((pm) => pm.user) // user가 존재하는 경우만 필터링
+            .map((pm) => ({
+              id: pm.user!.id,
+              name: pm.user!.name,
+              nickname: pm.user!.nickname,
+              profileImage: pm.user!.profileImage,
+            })),
         },
       },
       { status: 200 }
