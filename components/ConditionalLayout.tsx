@@ -18,14 +18,15 @@ export default function ConditionalLayout({
   const isAdminPage = pathname?.toLowerCase().startsWith('/admin'); // /admin으로 시작하는 모든 경로
   const isArchiveManagePage = pathname?.toLowerCase().startsWith('/archivemanage'); // /archiveManage로 시작하는 모든 경로
   const isProjectDetailPage = pathname?.toLowerCase().startsWith('/archive/project'); // 프로젝트 상세 페이지
+  const isMyProductsPage = pathname?.toLowerCase().startsWith('/mypage/products'); // 내가 등록한 상품 페이지
 
   return (
     <div className="flex flex-col min-h-screen w-full overflow-x-hidden">
-      {!isLoginPage && !isMyPage && !isAdminPage && !isArchiveManagePage && !isProjectDetailPage && <Header />}
+      {!isLoginPage && !isMyPage && !isAdminPage && !isArchiveManagePage && !isProjectDetailPage && !isMyProductsPage && <Header />}
       <main className="flex-1 w-full overflow-x-hidden">
         {children}
       </main>
-      {!isLoginPage && !isProjectDetailPage && <Footer />}
+      {!isLoginPage && !isProjectDetailPage && !isMyProductsPage && <Footer />}
     </div>
   );
 }

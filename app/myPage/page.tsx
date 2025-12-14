@@ -547,10 +547,18 @@ export default function MyPage() {
               </div>
               <div className="flex items-center px-[20px] py-0 relative shrink-0 w-full">
                 <div className="flex flex-col gap-[16px] items-start px-0 py-[12px] relative shrink-0 text-[13px] text-[#85817e] tracking-[-0.26px]">
-                  <button className="font-bold text-left relative shrink-0 hover:opacity-80 transition-opacity">
+                  <button 
+                    onClick={() => router.push('/myPage/products')}
+                    className="font-bold text-left relative shrink-0 hover:opacity-80 transition-opacity"
+                  >
                     내가 등록한 상품
                   </button>
-                  <button className="font-bold text-left relative shrink-0 hover:opacity-80 transition-opacity">
+                  <button 
+                    onClick={() => {
+                      window.open('https://gcsweb.super.site/', '_blank');
+                    }}
+                    className="font-bold text-left relative shrink-0 hover:opacity-80 transition-opacity"
+                  >
                     창작자 가이드
                   </button>
                 </div>
