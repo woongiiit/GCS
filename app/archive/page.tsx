@@ -93,8 +93,8 @@ function ArchiveContent() {
         setProjects(data.projects || []);
         
         // 연도 및 태그 목록 추출
-        const years = Array.from(new Set(data.projects.map((p: Project) => p.year))).sort((a: number, b: number) => b - a);
-        const tags = Array.from(new Set(data.projects.flatMap((p: Project) => p.tags || [])));
+        const years: number[] = Array.from(new Set(data.projects.map((p: Project) => p.year))).sort((a, b) => b - a);
+        const tags: string[] = Array.from(new Set(data.projects.flatMap((p: Project) => p.tags || [])));
         setAvailableYears(years);
         setAvailableTags(tags);
       } else {
