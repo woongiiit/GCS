@@ -4,20 +4,20 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 // 이미지 URL 상수들
-const imgRectangle2827 = "https://www.figma.com/api/mcp/asset/e12814a5-aac2-4e6d-a3bb-1753e44c61c9";
-const imgImg48121 = "https://www.figma.com/api/mcp/asset/133b73b3-08b9-4a94-ac72-b4701f8d9c3a";
-const imgImg48122 = "https://www.figma.com/api/mcp/asset/040bfc1f-bd0c-4a43-ab6c-7ec68d0029f9";
-const imgImg48123 = "https://www.figma.com/api/mcp/asset/d574c58d-e0b0-4987-8af2-0ae11d9d91ad";
+const imgRectangle2827 = "https://www.figma.com/api/mcp/asset/474085da-a210-432b-a0f0-8d33e28c5117";
+const imgImg48121 = "https://www.figma.com/api/mcp/asset/79e90af8-a27c-4843-996e-895cf1154bb2";
+const imgImg48122 = "https://www.figma.com/api/mcp/asset/0f23b4cb-34b0-4ff6-8a97-916d3c1b0bd1";
+const imgImg48123 = "https://www.figma.com/api/mcp/asset/5bcdec21-6c2d-4241-9649-2449561d1696";
 // 전공 소개용 이미지
-const imgMajor1 = "https://www.figma.com/api/mcp/asset/6d3c6af2-2aaf-46f4-a52c-aee7a4ab3475";
-const imgMajor2 = "https://www.figma.com/api/mcp/asset/62528215-e523-4d0b-a674-96efeb0856ea";
+const imgMajor1 = "https://www.figma.com/api/mcp/asset/97e048cb-b9b4-44fd-bd41-e431a92e79c0";
+const imgMajor2 = "https://www.figma.com/api/mcp/asset/d9039223-8089-4760-a02d-0cee1383311f";
 // 교수진 소개용 이미지
-const imgProfessor1 = "https://www.figma.com/api/mcp/asset/0988c178-fb42-4522-b5c0-9b144a1c839a";
-const imgProfessor2 = "https://www.figma.com/api/mcp/asset/004c9c5c-f918-4ce2-9b12-85000e76b13d";
-const imgProfessor3 = "https://www.figma.com/api/mcp/asset/a95e7565-0dc9-4950-83ba-171bf00c530f";
-const imgProfessor4 = "https://www.figma.com/api/mcp/asset/8c996bfa-bea2-4f5f-a682-5886bd10874c";
-const imgProfessor5 = "https://www.figma.com/api/mcp/asset/36d422e9-9966-4352-a201-a9148138246c";
-const imgLine = "https://www.figma.com/api/mcp/asset/b25ab2d1-d515-4f0e-9826-88f27130cfcd";
+const imgProfessor1 = "https://www.figma.com/api/mcp/asset/d09f99b9-ad7e-41f2-b754-23b9e3575314"; // 김승용 교수
+const imgProfessor2 = "https://www.figma.com/api/mcp/asset/a1c9712f-38f8-4b61-a877-9f944b81da16"; // 정구혁 교수
+const imgProfessor3 = "https://www.figma.com/api/mcp/asset/46f2584f-1c5b-4e03-9448-d7fbf4cfb0f9"; // 김봉구 교수
+const imgProfessor4 = "https://www.figma.com/api/mcp/asset/b871f367-416f-4d15-8029-4e17fce4e764"; // 김병수 교수
+const imgProfessor5 = "https://www.figma.com/api/mcp/asset/50ea2103-a056-4842-99e9-bbd80d625ea3"; // 김정욱 교수
+const imgLine = "https://www.figma.com/api/mcp/asset/10d9eb69-a6a0-4b51-b3ee-94e717e9455e";
 
 export default function AboutPage() {
   const router = useRouter();
@@ -203,12 +203,12 @@ export default function AboutPage() {
                {/* 이미지 2개 - 좌우 배치 */}
                <div className="flex flex-col gap-[12px] items-start relative shrink-0 w-full">
                  {/* 첫 번째 이미지 - 왼쪽에 붙게 */}
-                 <div className="flex items-center justify-start pl-0 pr-0 py-0 relative shrink-0 w-full">
-                   <div className="aspect-square relative rounded-[4px] shrink-0 w-[240px] h-[240px]">
+                 <div className="flex items-center pl-0 pr-[100px] py-0 relative shrink-0 w-full">
+                   <div className="aspect-[110/110] flex-[1_0_0] min-h-px min-w-px relative rounded-[4px] shrink-0 w-[110px]">
                      <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[4px]">
                        <img 
                          alt="" 
-                         className="absolute h-[106.8%] left-[-24.6%] max-w-none top-0 w-[142.39%] object-cover" 
+                         className="absolute h-[106.8%] left-[-24.6%] max-w-none top-0 w-[142.39%]" 
                          src={imgMajor1} 
                        />
                      </div>
@@ -216,12 +216,12 @@ export default function AboutPage() {
                  </div>
                  
                  {/* 두 번째 이미지 - 오른쪽에 붙게 */}
-                 <div className="flex items-center justify-end pl-0 pr-0 py-0 relative shrink-0 w-full">
-                   <div className="aspect-square relative rounded-[4px] shrink-0 w-[240px] h-[240px]">
+                 <div className="flex items-center pl-[100px] pr-0 py-0 relative shrink-0 w-full">
+                   <div className="aspect-[110/110] flex-[1_0_0] min-h-px min-w-px relative rounded-[4px] shrink-0 w-[110px]">
                      <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[4px]">
                        <img 
                          alt="" 
-                         className="absolute h-[184.8%] left-[-10.48%] max-w-none top-[-53.23%] w-[117.48%] object-cover" 
+                         className="absolute h-[184.8%] left-[-10.48%] max-w-none top-[-53.23%] w-[117.48%]" 
                          src={imgMajor2} 
                        />
                      </div>

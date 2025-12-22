@@ -6,7 +6,7 @@ import ConditionalLayout from "@/components/ConditionalLayout";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Crazy App",
+  title: "GCS",
   description: "Full-stack web application",
 };
 
