@@ -4,23 +4,24 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 // 이미지 URL 상수들
-const imgVector827 = "https://www.figma.com/api/mcp/asset/bc8152b2-f82a-476a-8b4f-0fff6612541e";
-const imgVector828 = "https://www.figma.com/api/mcp/asset/b0cc19a3-f80e-4bcc-b8a1-9820fd680067";
-const imgEllipse5406 = "https://www.figma.com/api/mcp/asset/ea2b8444-fca1-4c80-a5bf-4bcf364e2a0a";
-const imgEllipse5405 = "https://www.figma.com/api/mcp/asset/79e307fe-f6ba-46c5-b4b5-07c8a7145cbf";
-const imgEllipse5404 = "https://www.figma.com/api/mcp/asset/2dfd4206-5454-4a01-9afc-66cf59700a47";
-const img = "https://www.figma.com/api/mcp/asset/cf2f50ea-36de-4d43-ae8d-e89a5b974b68";
-const img1 = "https://www.figma.com/api/mcp/asset/5d4a3b28-57a3-4ca2-9471-bd2ce2fff6f2";
-const imgLine336 = "https://www.figma.com/api/mcp/asset/50568631-69a4-4197-b528-e865f1cae007";
-const img2 = "https://www.figma.com/api/mcp/asset/650211d3-2d7d-4520-9db4-afc82e3d5dd3";
-const img3 = "https://www.figma.com/api/mcp/asset/57065093-3622-4116-b73e-d1bd87a50749";
-const img4 = "https://www.figma.com/api/mcp/asset/2fb993b2-14b1-4da2-b892-d23ec0eec1ac";
-const img5 = "https://www.figma.com/api/mcp/asset/b55cf6e6-7889-4507-b58b-daa07e2fa120";
-const img6 = "https://www.figma.com/api/mcp/asset/29e606d0-1ead-404b-9c20-d4a28e8be041";
+const imgCheck = "https://www.figma.com/api/mcp/asset/f0d8ce17-162f-4579-85d3-f6af98339c4e";
+const img = "https://www.figma.com/api/mcp/asset/6beae36a-5572-4d47-bac8-eff974203718";
+const img1 = "https://www.figma.com/api/mcp/asset/30ebfe4d-d9cd-49cc-9b90-c0f7be5ab4d6";
+const imgVector827 = "https://www.figma.com/api/mcp/asset/357a561b-b8bb-4210-8493-f76b200a24e2";
+const imgVector828 = "https://www.figma.com/api/mcp/asset/00d2467a-5d2e-4a1e-a432-ef90a15ff2bb";
+const imgEllipse5406 = "https://www.figma.com/api/mcp/asset/1198ad88-0245-4304-ae6d-106bf09d6b1a";
+const imgEllipse5405 = "https://www.figma.com/api/mcp/asset/bcd5e497-6f83-4dc9-b95a-2350ec0d2042";
+const imgEllipse5404 = "https://www.figma.com/api/mcp/asset/2fc990ef-debe-4780-bdbc-4966e9d9f097";
+const imgLine336 = "https://www.figma.com/api/mcp/asset/c952a930-5bc5-48a1-95d0-b0f1dd19fe85";
+const imgWeuiBackFilled = "https://www.figma.com/api/mcp/asset/e035aa49-c107-43c5-a700-e04f00c7455d";
+const img2 = "https://www.figma.com/api/mcp/asset/1060d2d6-c940-4925-b6ae-8c0bf85bac25";
+const img3 = "https://www.figma.com/api/mcp/asset/38e39a12-4d35-4308-96dc-882dbe8f8720";
+const img4 = "https://www.figma.com/api/mcp/asset/7d891adb-8246-4df5-bd4f-ae8531af7788";
+const img5 = "https://www.figma.com/api/mcp/asset/53dbb1d7-30fe-4672-8bde-7d51fe367044";
+const img6 = "https://www.figma.com/api/mcp/asset/cf93c7a8-cf0d-49fd-a8c4-ed69b8e8b82c";
 const imgLine297 = "https://www.figma.com/api/mcp/asset/1d8d2aeb-cbd2-4408-a9a6-674a5e721eca";
 const imgFluentRadioButton24Filled = "https://www.figma.com/api/mcp/asset/c43ef871-635e-44ae-b607-1582664665ae";
 const imgFluentRadioButton24Regular = "https://www.figma.com/api/mcp/asset/b2b47c8a-f4b7-4e1b-974b-5a1b6c8cc7e4";
-const imgWeuiBackFilled = "https://www.figma.com/api/mcp/asset/64dcd1da-5ba2-4ea6-9ee8-2c0afc37d738";
 
 export default function RegisterPage() {
   const router = useRouter();

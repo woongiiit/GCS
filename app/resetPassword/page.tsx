@@ -7,16 +7,16 @@ import { useRouter, useSearchParams } from 'next/navigation';
 export const dynamic = 'force-dynamic';
 
 // 이미지 URL 상수들
-const imgVector827 = "https://www.figma.com/api/mcp/asset/bc8152b2-f82a-476a-8b4f-0fff6612541e";
-const imgVector828 = "https://www.figma.com/api/mcp/asset/b0cc19a3-f80e-4bcc-b8a1-9820fd680067";
-const imgEllipse5406 = "https://www.figma.com/api/mcp/asset/ea2b8444-fca1-4c80-a5bf-4bcf364e2a0a";
-const imgEllipse5405 = "https://www.figma.com/api/mcp/asset/79e307fe-f6ba-46c5-b4b5-07c8a7145cbf";
-const imgEllipse5404 = "https://www.figma.com/api/mcp/asset/2dfd4206-5454-4a01-9afc-66cf59700a47";
-const img1 = "https://www.figma.com/api/mcp/asset/650211d3-2d7d-4520-9db4-afc82e3d5dd3";
-const img2 = "https://www.figma.com/api/mcp/asset/57065093-3622-4116-b73e-d1bd87a50749";
-const img3 = "https://www.figma.com/api/mcp/asset/2fb993b2-14b1-4da2-b892-d23ec0eec1ac";
-const img4 = "https://www.figma.com/api/mcp/asset/b55cf6e6-7889-4507-b58b-daa07e2fa120";
-const img5 = "https://www.figma.com/api/mcp/asset/29e606d0-1ead-404b-9c20-d4a28e8be041";
+const imgVector827 = "https://www.figma.com/api/mcp/asset/18c6630e-f781-4dbc-9603-de33adb9cc52";
+const imgVector828 = "https://www.figma.com/api/mcp/asset/da42a51e-587c-4b66-b4aa-3a49215c89a2";
+const imgEllipse5406 = "https://www.figma.com/api/mcp/asset/b33709a9-60f9-453f-89dc-3825f1f81f27";
+const imgEllipse5405 = "https://www.figma.com/api/mcp/asset/3e1eb164-2658-47c7-bc61-c2ff7e016efa";
+const imgEllipse5404 = "https://www.figma.com/api/mcp/asset/e52ac109-4b78-49ea-951e-1516fda56e19";
+const img1 = "https://www.figma.com/api/mcp/asset/dd5ac9ec-7654-4bf7-8938-9557012e7691";
+const img2 = "https://www.figma.com/api/mcp/asset/f28dcf38-25be-475a-9058-4f053dac97a9";
+const img3 = "https://www.figma.com/api/mcp/asset/0f917598-19c4-47b9-a181-40e68a8e9954";
+const img4 = "https://www.figma.com/api/mcp/asset/151a9c58-c156-4e07-b7b3-bce26c241717";
+const img5 = "https://www.figma.com/api/mcp/asset/262f0702-0be1-42ff-bf1a-fe02cbf94f52";
 
 function ResetPasswordContent() {
   const router = useRouter();

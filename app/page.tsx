@@ -1,17 +1,17 @@
 'use client';
 
 // 이미지 URL 상수들
-const imgRectangle2823 = "https://www.figma.com/api/mcp/asset/cc74fff0-1ae9-4dc6-b4d8-f526bd5902fe";
-const imgEllipse5500 = "https://www.figma.com/api/mcp/asset/7e39b871-077d-4fa6-9cf7-55b5f8bebfb2";
-const imgVector833 = "https://www.figma.com/api/mcp/asset/05814c2d-2545-4a9a-8040-868e8804bcf7";
-const imgVector832 = "https://www.figma.com/api/mcp/asset/8a44e89c-1d67-4b19-afb1-8b8a8bb29ece";
-const imgEllipse5499 = "https://www.figma.com/api/mcp/asset/9c1cbc89-581f-41ba-a073-eafcf0493b01";
-const imgEllipse5498 = "https://www.figma.com/api/mcp/asset/81675f3f-6938-46e0-8b5e-53f34d7c8251";
-const img10 = "https://www.figma.com/api/mcp/asset/0ab6387e-012a-49b6-be51-665707d0b842";
-const img11 = "https://www.figma.com/api/mcp/asset/2cb3162e-9046-4a06-b033-177d5a468d6a";
-const img12 = "https://www.figma.com/api/mcp/asset/f787a775-c2b6-443b-9872-d2d5cd10196e";
-const img13 = "https://www.figma.com/api/mcp/asset/cbb074d7-f6ac-4376-8d51-6db3e0c96656";
-const img14 = "https://www.figma.com/api/mcp/asset/6f57b013-c8c4-4f5d-9c7f-fab2a620f1f7";
+const imgRectangle2823 = "https://www.figma.com/api/mcp/asset/c3ee537a-e1ea-4035-bd79-2081dfbbdab3";
+const imgEllipse5500 = "https://www.figma.com/api/mcp/asset/4721401e-a2f1-4bfa-a974-5319fd96604c";
+const imgVector833 = "https://www.figma.com/api/mcp/asset/d1838ece-4916-4cea-978a-61d80b712a2e";
+const imgVector832 = "https://www.figma.com/api/mcp/asset/81028f71-633c-44f4-9499-228a31613864";
+const imgEllipse5499 = "https://www.figma.com/api/mcp/asset/356b5bc8-8876-4dfb-a577-c557ee303d3c";
+const imgEllipse5498 = "https://www.figma.com/api/mcp/asset/9a19c218-4519-4cc1-bc62-42042ce9dfa3";
+const img10 = "https://www.figma.com/api/mcp/asset/615ebb9a-f45a-4340-9ade-7b82e1548635";
+const img11 = "https://www.figma.com/api/mcp/asset/4d048553-1cf9-4256-916c-7b6cf44e319a";
+const img12 = "https://www.figma.com/api/mcp/asset/3d06e91c-8f93-4bcf-8058-2d3fb5ef50b6";
+const img13 = "https://www.figma.com/api/mcp/asset/60dc003b-2fd7-4e63-ad2d-e78a3239be9f";
+const img14 = "https://www.figma.com/api/mcp/asset/99082565-5c3b-48fe-991e-b4a1d430e329";
 
 export default function Home() {
   return (

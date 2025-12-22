@@ -5,18 +5,19 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 // 이미지 URL 상수들
-const imgVector827 = "https://www.figma.com/api/mcp/asset/bc8152b2-f82a-476a-8b4f-0fff6612541e";
-const imgVector828 = "https://www.figma.com/api/mcp/asset/b0cc19a3-f80e-4bcc-b8a1-9820fd680067";
-const imgEllipse5406 = "https://www.figma.com/api/mcp/asset/ea2b8444-fca1-4c80-a5bf-4bcf364e2a0a";
-const imgEllipse5405 = "https://www.figma.com/api/mcp/asset/79e307fe-f6ba-46c5-b4b5-07c8a7145cbf";
-const imgEllipse5404 = "https://www.figma.com/api/mcp/asset/2dfd4206-5454-4a01-9afc-66cf59700a47";
-const img = "https://www.figma.com/api/mcp/asset/07952b88-84b4-4154-89ad-5c619adfda8e";
-const img1 = "https://www.figma.com/api/mcp/asset/f3e324c0-c766-43a9-bc89-066c10960ab8";
-const img2 = "https://www.figma.com/api/mcp/asset/650211d3-2d7d-4520-9db4-afc82e3d5dd3";
-const img3 = "https://www.figma.com/api/mcp/asset/57065093-3622-4116-b73e-d1bd87a50749";
-const img4 = "https://www.figma.com/api/mcp/asset/2fb993b2-14b1-4da2-b892-d23ec0eec1ac";
-const img5 = "https://www.figma.com/api/mcp/asset/b55cf6e6-7889-4507-b58b-daa07e2fa120";
-const img6 = "https://www.figma.com/api/mcp/asset/29e606d0-1ead-404b-9c20-d4a28e8be041";
+const imgVector827 = "https://www.figma.com/api/mcp/asset/109de28d-e040-4cda-938b-dc9ebe09df9c";
+const imgVector828 = "https://www.figma.com/api/mcp/asset/f3ae04f5-12a7-458f-ad81-59879cf81272";
+const imgEllipse5406 = "https://www.figma.com/api/mcp/asset/f4fd319c-d738-4034-8cae-4604a2e167c0";
+const imgEllipse5405 = "https://www.figma.com/api/mcp/asset/ff0cbd49-0fd0-45a6-aebe-57a4f7495678";
+const imgEllipse5404 = "https://www.figma.com/api/mcp/asset/65f71dfe-6859-4fcf-9783-beaef392735f";
+const img = "https://www.figma.com/api/mcp/asset/86ca269e-cdc2-4c30-9b85-e5581b420c3a";
+const img1 = "https://www.figma.com/api/mcp/asset/e132c624-4a07-4d35-bc08-4a85a8997f02";
+const imgWeuiBackFilled = "https://www.figma.com/api/mcp/asset/12204ab6-3fea-423e-bd2b-c45a78309bd1";
+const img2 = "https://www.figma.com/api/mcp/asset/3ba3a075-4881-4645-88af-4ac21f8928a6";
+const img3 = "https://www.figma.com/api/mcp/asset/e8baba0f-12f9-4e32-b418-2387c3f5f5ff";
+const img4 = "https://www.figma.com/api/mcp/asset/4062015d-a4f7-457c-b2fd-60fe988d1c84";
+const img5 = "https://www.figma.com/api/mcp/asset/3b3175ae-25fe-4dcc-ad5d-3790de8acb81";
+const img6 = "https://www.figma.com/api/mcp/asset/d42148ba-e097-439b-9366-42caaabc1ffc";
 
 export default function FindIDPage() {
   const router = useRouter();
