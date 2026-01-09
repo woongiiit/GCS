@@ -397,14 +397,6 @@ export default function Footer() {
                   <p className="mb-3">
                     본 서비스 이용과 관련하여 발생한 분쟁에 대해 소송이 제기될 경우 대전지방법원을 전속적 관할 법원으로 합니다.
                   </p>
-
-                  <h3 className="font-bold text-[15px] mb-2 mt-4">부 칙</h3>
-                  <p className="mb-2">
-                    [시행일] 본 약관은 2018년 11월 22일부터 시행됩니다.
-                  </p>
-                  <p className="mb-3">
-                    개정된 약관의 적용일자 이전 이용자 또는 회원은 개정된 이용약관의 적용을 받습니다.
-                  </p>
                 </div>
               </div>
 
