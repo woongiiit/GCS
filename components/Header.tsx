@@ -104,9 +104,9 @@ export default function Header() {
             className="cursor-pointer hover:opacity-80 transition-opacity"
             aria-label="홈으로 이동"
           >
-            <div className="relative h-[25px] w-[113px] md:w-[145px]">
+            <div className="relative h-[19px] w-[57px] md:h-[25px] md:w-[75px]">
               <Image
-                src="/images/logo.svg"
+                src="/images/logo_black.svg"
                 alt="Brand Logo"
                 fill
                 className="object-contain"
