@@ -1,4 +1,4 @@
-# Crazy App
+# GCS
 
 Next.js 기반 풀스택 웹 애플리케이션
 
