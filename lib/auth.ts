@@ -1,47 +1,66 @@
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import { type NextAuthOptions } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import { compare } from 'bcryptjs';
+import { prisma } from '@/lib/db';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
+export const authOptions: NextAuthOptions = {
+  providers: [
+    CredentialsProvider({
+      name: 'credentials',
+      credentials: {
+        email: { label: 'Email', type: 'email' },
+        password: { label: 'Password', type: 'password' },
+      },
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) {
+          return null;
+        }
 
-// 비밀번호 해싱
-export async function hashPassword(password: string): Promise<string> {
-  return bcrypt.hash(password, 10);
-}
+        const user = await prisma.user.findUnique({
+          where: { email: credentials.email },
+        });
 
-// 비밀번호 검증
-export async function verifyPassword(password: string, hashedPassword: string): Promise<boolean> {
-  return bcrypt.compare(password, hashedPassword);
-}
+        if (!user || !user.password) {
+          return null;
+        }
 
-// JWT 토큰 생성
-export function generateToken(userId: string, email: string): string {
-  return jwt.sign({ userId, email }, JWT_SECRET, { expiresIn: '7d' });
-}
+        const isPasswordValid = await compare(credentials.password, user.password);
 
-// JWT 토큰 검증
-export function verifyToken(token: string): { userId: string; email: string } | null {
-  try {
-    return jwt.verify(token, JWT_SECRET) as { userId: string; email: string };
-  } catch {
-    return null;
-  }
-}
+        if (!isPasswordValid) {
+          return null;
+        }
 
-// 인증번호 생성
-export function generateVerificationCode(): string {
-  return Math.floor(100000 + Math.random() * 900000).toString();
-}
-
-// 관리자 권한 확인 (async - DB에서 확인)
-export async function isAdmin(userId: string, prisma: any): Promise<boolean> {
-  try {
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
-      select: { memberType: true },
-    });
-    return user?.memberType === 'admin';
-  } catch {
-    return false;
-  }
-}
-
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          role: user.role,
+        };
+      },
+    }),
+  ],
+  session: {
+    strategy: 'jwt',
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+  },
+  pages: {
+    signIn: '/login',
+    error: '/login',
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.role = user.role;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.id as string;
+        session.user.role = token.role as string;
+      }
+      return session;
+    },
+  },
+};

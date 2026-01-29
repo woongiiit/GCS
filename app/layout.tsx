@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import ConditionalLayout from "@/components/ConditionalLayout";
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import Providers from './providers';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "GCS",
-  description: "Full-stack web application",
+  title: 'GCS',
+  description: 'GCS Web Application',
 };
 
 export default function RootLayout({
@@ -18,11 +18,8 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={inter.className}>
-        <ConditionalLayout>
-          {children}
-        </ConditionalLayout>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
 }
-
