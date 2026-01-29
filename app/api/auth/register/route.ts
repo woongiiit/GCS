@@ -16,7 +16,7 @@ export async function POST(request: Request) {
       );
     }
     
-    const { email, name, password } = result.data;
+    const { email, name, password, nickname, phone } = result.data;
     
     // Check if user exists
     const existingUser = await prisma.user.findUnique({
@@ -29,6 +29,17 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
+
+    const existingNickname = await prisma.user.findUnique({
+      where: { nickname },
+    });
+
+    if (existingNickname) {
+      return NextResponse.json(
+        { error: '이미 사용 중인 닉네임입니다.' },
+        { status: 400 }
+      );
+    }
     
     // Hash password
     const hashedPassword = await hash(password, 12);
@@ -38,12 +49,16 @@ export async function POST(request: Request) {
       data: {
         email,
         name,
+        nickname,
+        phone,
         password: hashedPassword,
       },
       select: {
         id: true,
         email: true,
+        nickname: true,
         name: true,
+        phone: true,
         createdAt: true,
       },
     });

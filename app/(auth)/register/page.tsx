@@ -68,6 +68,22 @@ export default function RegisterPage() {
             <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
           )}
         </div>
+
+        <div>
+          <label htmlFor="nickname" className="block text-sm font-medium text-gray-700 mb-1">
+            닉네임
+          </label>
+          <input
+            id="nickname"
+            type="text"
+            {...register('nickname')}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+            placeholder="닉네임 입력"
+          />
+          {errors.nickname && (
+            <p className="text-red-500 text-sm mt-1">{errors.nickname.message}</p>
+          )}
+        </div>
         
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
@@ -82,6 +98,22 @@ export default function RegisterPage() {
           />
           {errors.name && (
             <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+            전화번호
+          </label>
+          <input
+            id="phone"
+            type="tel"
+            {...register('phone')}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+            placeholder="010-1234-5678"
+          />
+          {errors.phone && (
+            <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
           )}
         </div>
         
