@@ -11,31 +11,434 @@ datasource db {
 }
 
 // ============================================
-// User Model (Base)
+// User - 사용자
 // ============================================
 
 model User {
-  id            String    @id @default(cuid())
-  email         String    @unique
-  password      String
-  name          String
-  role          String    @default("user") // "user" | "admin"
-  profileImage  String?
-  emailVerified DateTime?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  id                String    @id @default(cuid())
+  email             String    @unique
+  password          String
+  nickname          String    @unique
+  name              String
+  phone             String
+  memberType        Int       @default(0) // 0: general, 1: major, 2: admin
+  isSeller          Boolean   @default(false)
+  studentId         String?
+  major             String?
+  profileImage      String?
+  isVerified        Boolean   @default(false)
+  isRepresentative  Boolean   @default(false)
+  likeCount         Int       @default(0)
+  notificationCount Int       @default(0)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  // Relations
+  teams       Team[]
+  orders      Order[]
+  reviews     Review[]
+  posts       Post[]
+  inquiries   Inquiry[]
+  likes       Like[]
 
   @@index([email])
-  @@index([role])
+  @@index([nickname])
+  @@index([memberType])
 }
 
 // ============================================
-// Email Verification
+// Team - 판매팀
+// ============================================
+
+model Team {
+  id                    String    @id @default(cuid())
+  userId                String
+  teamName              String    @unique
+  representativeName    String
+  representativeNickname String
+  teamMember            String[]
+  teamMemberNickname    String[]
+  accountUrl            String
+  totalSales            Int?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  // Relations
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  products    Product[]
+  settlements Settlement[]
+
+  @@index([userId])
+  @@index([teamName])
+}
+
+// ============================================
+// Product - 상품
+// ============================================
+
+model Product {
+  id                  String    @id @default(cuid())
+  teamId              String
+  name                String
+  description         String?
+  type                Int       @default(0) // 0: fund, 1: buy now, 2: partner
+  status              Int       @default(0) // 0: pending, 1: active, 2: completed
+  price               Int
+  goalAmount          Int?
+  currentAmount       Int       @default(0)
+  salesStartDate      DateTime?
+  salesEndDate        DateTime?
+  productionStartDate DateTime?
+  deliveryStartDate   DateTime?
+  receiveMethod       Int       @default(0) // 0: delivery, 1: pickup
+  isPublic            Boolean   @default(false)
+  likeCount           Int       @default(0)
+  viewCount           Int       @default(0)
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  // Relations
+  team            Team                  @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  options         ProductOption[]
+  images          ProductImage[]
+  variants        ProductVariant[]
+  orderItems      OrderItem[]
+  reviews         Review[]
+  likes           Like[]
+
+  @@index([teamId])
+  @@index([type])
+  @@index([status])
+  @@index([isPublic])
+}
+
+// ============================================
+// ProductOption - 상품 옵션
+// ============================================
+
+model ProductOption {
+  id         String               @id @default(cuid())
+  productId  String
+  optionName String
+
+  // Relations
+  product    Product              @relation(fields: [productId], references: [id], onDelete: Cascade)
+  values     ProductOptionValue[]
+
+  @@index([productId])
+}
+
+// ============================================
+// ProductOptionValue - 상품 옵션 값
+// ============================================
+
+model ProductOptionValue {
+  id              String        @id @default(cuid())
+  optionId        String
+  value           String
+  additionalPrice Int           @default(0)
+
+  // Relations
+  option          ProductOption @relation(fields: [optionId], references: [id], onDelete: Cascade)
+
+  @@index([optionId])
+}
+
+// ============================================
+// ProductVariant - 상품 변형 (옵션 조합)
+// ============================================
+
+model ProductVariant {
+  id          String    @id @default(cuid())
+  productId   String
+  variantName String?
+  price       Int
+  stock       Int?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relations
+  product     Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+}
+
+// ============================================
+// ProductImage - 상품 이미지
+// ============================================
+
+model ProductImage {
+  id              String    @id @default(cuid())
+  productId       String
+  thumbnailImgUrl String
+  detailImgUrl    String[]
+  createdAt       DateTime  @default(now())
+
+  // Relations
+  product         Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+}
+
+// ============================================
+// Order - 주문
+// ============================================
+
+model Order {
+  id              String      @id @default(cuid())
+  userId          String
+  status          Int         @default(0) // 0: pending, 1: approved, 2: processing, 3: delivered, 4: confirmed
+  totalAmount     Int
+  orderDate       DateTime    @default(now())
+  shippingAddress String
+  shippingName    String
+  shippingPhone   String
+  shippingEmail   String?
+  memo            String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  // Relations
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items           OrderItem[]
+  inquiries       Inquiry[]
+
+  @@index([userId])
+  @@index([status])
+  @@index([orderDate])
+}
+
+// ============================================
+// OrderItem - 주문 항목
+// ============================================
+
+model OrderItem {
+  id          String    @id @default(cuid())
+  orderId     String
+  productId   String
+  quantity    Int
+  price       Int
+  optionData  Json?
+  createdAt   DateTime  @default(now())
+
+  // Relations
+  order       Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product     Product   @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+  @@index([productId])
+}
+
+// ============================================
+// Review - 리뷰
+// ============================================
+
+model Review {
+  id          String        @id @default(cuid())
+  userId      String
+  productId   String
+  orderId     String?
+  rating      Int
+  content     String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  // Relations
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product     Product       @relation(fields: [productId], references: [id], onDelete: Cascade)
+  images      ReviewImage[]
+
+  @@index([userId])
+  @@index([productId])
+  @@index([rating])
+}
+
+// ============================================
+// ReviewImage - 리뷰 이미지
+// ============================================
+
+model ReviewImage {
+  id        String    @id @default(cuid())
+  reviewId  String
+  url       String[]
+  createdAt DateTime  @default(now())
+
+  // Relations
+  review    Review    @relation(fields: [reviewId], references: [id], onDelete: Cascade)
+
+  @@index([reviewId])
+}
+
+// ============================================
+// Post - 게시글 (Board / Lounge)
+// ============================================
+
+model Post {
+  id           String    @id @default(cuid())
+  userId       String
+  category     Int       @default(0) // 0: board, 1: lounge
+  title        String
+  subTitle     String?
+  content      String
+  thumbnailUrl String?
+  images       String[]
+  likeCount    Int       @default(0)
+  viewCount    Int       @default(0)
+  isPublic     Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  // Relations
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  likes        Like[]
+
+  @@index([userId])
+  @@index([category])
+  @@index([isPublic])
+  @@index([createdAt])
+}
+
+// ============================================
+// Category - 카테고리
+// ============================================
+
+model Category {
+  id       String @id @default(cuid())
+  category String @unique
+}
+
+// ============================================
+// Project - 프로젝트 (아카이브)
+// ============================================
+
+model Project {
+  id              String    @id @default(cuid())
+  title           String
+  year            Int
+  thumbnailImgUrl String?
+  detailImgUrl    String?
+  likeCount       Int       @default(0)
+  viewCount       Int       @default(0)
+  isPublic        Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  // Relations
+  likes           Like[]
+
+  @@index([year])
+  @@index([isPublic])
+}
+
+// ============================================
+// News - 뉴스
+// ============================================
+
+model News {
+  id              String    @id @default(cuid())
+  title           String
+  startDate       DateTime?
+  endDate         DateTime?
+  thumbnailImgUrl String?
+  detailImgUrl    String[]
+  isHeadline      Boolean   @default(false)
+  likeCount       Int       @default(0)
+  viewCount       Int       @default(0)
+  isPublic        Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  // Relations
+  likes           Like[]
+
+  @@index([isHeadline])
+  @@index([isPublic])
+}
+
+// ============================================
+// Inquiry - 문의 / 환불 요청
+// ============================================
+
+model Inquiry {
+  id        String    @id @default(cuid())
+  userId    String
+  orderId   String?
+  content   String
+  status    Int       @default(0) // 0: pending, 1: completed
+  createdAt DateTime  @default(now())
+
+  // Relations
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  order     Order?    @relation(fields: [orderId], references: [id])
+
+  @@index([userId])
+  @@index([orderId])
+  @@index([status])
+}
+
+// ============================================
+// Settlement - 정산
+// ============================================
+
+model Settlement {
+  id                  String    @id @default(cuid())
+  orderId             String?
+  teamId              String
+  teamName            String
+  grossAmount         Int
+  productionCost      Int       @default(0)
+  refundAmount        Int       @default(0)
+  feeAmount           Int       @default(0)
+  paidDate            DateTime?
+  attachmentUrl       String?
+  settlementStartDate DateTime
+  settlementEndDate   DateTime
+  status              Int       @default(0) // 0: pending, 1: completed, 2: suspended
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  // Relations
+  team                Team      @relation(fields: [teamId], references: [id], onDelete: Cascade)
+
+  @@index([teamId])
+  @@index([status])
+  @@index([settlementStartDate, settlementEndDate])
+}
+
+// ============================================
+// Like - 좋아요
+// ============================================
+
+model Like {
+  id        String    @id @default(cuid())
+  userId    String
+  productId String?
+  postId    String?
+  projectId String?
+  newsId    String?
+  createdAt DateTime  @default(now())
+
+  // Relations
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product   Product?  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  post      Post?     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  project   Project?  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  news      News?     @relation(fields: [newsId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productId])
+  @@unique([userId, postId])
+  @@unique([userId, projectId])
+  @@unique([userId, newsId])
+  @@index([userId])
+}
+
+// ============================================
+// VerificationToken - 이메일 인증
 // ============================================
 
 model VerificationToken {
   id         String   @id @default(cuid())
-  identifier String   // email
+  identifier String
   token      String   @unique
   expires    DateTime
   createdAt  DateTime @default(now())
